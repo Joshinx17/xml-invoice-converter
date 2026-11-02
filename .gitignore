@@ -1,0 +1,14 @@
+# Java build output
+/out/
+*.class
+
+# Rendered invoices
+/output/
+
+# Local editor and OS files
+.vscode/*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Local Sites checkout state
+/site/.git/
