@@ -10,5 +10,5 @@
 .DS_Store
 Thumbs.db
 
-# Local Sites checkout state
-/site/.git/
+# Local Sites publishing repository
+/site/.openai/source-git/

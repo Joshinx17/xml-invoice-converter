@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Preview and print UBL 2.1 invoices in your browser.">
+  <title>Invoice Viewer — UBL to printable HTML</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#142e43;background:#f4f6f7;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}
+    .shell{max-width:1320px;margin:auto;padding:28px 32px 50px}.top{display:flex;justify-content:space-between;align-items:center;padding-bottom:26px;border-bottom:1px solid #dce3e7}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:750;font-size:18px;letter-spacing:-.02em}.mark{display:grid;place-items:center;width:34px;height:34px;background:#153a54;color:white;border-radius:9px;font-size:20px}
+    .top-note{font-size:13px;color:#607586}.intro{display:flex;justify-content:space-between;align-items:end;gap:30px;margin:42px 0 28px}.eyebrow{font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:#087d83}
+    h1{font-size:clamp(31px,4vw,50px);letter-spacing:-.055em;line-height:1.08;margin:9px 0 12px}.intro p{max-width:570px;color:#607586;margin:0;line-height:1.65}.privacy{font-size:12px;color:#497467;border:1px solid #cce5d9;background:#eaf7f0;border-radius:999px;padding:8px 14px;white-space:nowrap}
+    .workspace{display:grid;grid-template-columns:minmax(295px,350px) minmax(0,1fr);gap:22px;align-items:start}.panel,.preview{background:white;border:1px solid #dce3e7;border-radius:16px;box-shadow:0 12px 38px rgba(20,46,67,.035)}.panel{padding:23px}.panel h2,.preview h2{font-size:17px;letter-spacing:-.02em;margin:0}.section-note{font-size:13px;color:#718391;margin:7px 0 20px;line-height:1.5}
+    .drop{display:block;border:1.5px dashed #a9bcc7;border-radius:12px;background:#f9fbfc;text-align:center;padding:26px 15px;transition:.2s}.drop.drag{border-color:#087d83;background:#e9f6f5}.drop svg{display:block;margin:auto auto 10px}.drop strong{display:block;font-size:14px}.drop span{display:block;font-size:12px;color:#718391;margin-top:6px}.drop input{position:absolute;opacity:0;width:1px;height:1px}.drop:focus-within{outline:3px solid #9cdad9}
+    .sample{width:100%;margin-top:12px;border:1px solid #cdd9df;background:white;border-radius:9px;padding:10px;color:#164962;font-weight:650}.sample:hover{background:#f3f8f9}.file-label{display:flex;align-items:center;justify-content:space-between;margin:27px 0 10px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:750;color:#718391}.count{background:#e8f1f3;color:#236170;border-radius:99px;padding:3px 7px;letter-spacing:0}.files{list-style:none;margin:0;padding:0;max-height:290px;overflow:auto}.files li+li{margin-top:6px}.files button{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;background:transparent;text-align:left;border-radius:9px;padding:10px;color:#40576a}.files button:hover{background:#f3f7f9}.files button.active{border-color:#aad3d7;background:#eaf6f6;color:#124754}.file-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;font-size:13px}.status-dot{width:7px;height:7px;border-radius:50%;background:#2ca688;flex:none}.status-dot.error{background:#d7674f}.empty{padding:13px;color:#8a9aa5;font-size:13px}.error-text{font-size:11px;color:#b24838;line-height:1.3;margin:3px 0 0 28px}
+    .preview{overflow:hidden}.preview-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-bottom:1px solid #e2e8eb}.preview-head p{font-size:12px;color:#7b8c98;margin:3px 0 0}.actions{display:flex;gap:8px}.actions button{border:1px solid #cbd9df;border-radius:8px;padding:9px 12px;background:white;color:#164962;font-size:12px;font-weight:700;white-space:nowrap}.actions button:hover:not(:disabled){background:#f3f8f9}.actions .primary{background:#153a54;color:white;border-color:#153a54}.actions .primary:hover:not(:disabled){background:#245a78}.stage{background:#e9eef1;min-height:680px;padding:24px}.stage iframe{display:block;background:white;border:0;width:100%;height:850px;box-shadow:0 4px 20px #17384c22}.placeholder{display:grid;place-content:center;text-align:center;min-height:630px;color:#758995}.placeholder .icon{font-size:42px;color:#aec4cd;margin-bottom:12px}.placeholder strong{font-size:17px;color:#3c5667}.placeholder p{font-size:13px;margin:8px 0 0}.error-panel{background:#fff4f1;color:#9e3f32;padding:16px;border:1px solid #f2c8bd;border-radius:9px;font-size:13px}
+    @media(max-width:900px){.workspace{grid-template-columns:1fr}.panel{order:1}.preview{order:2}.stage{min-height:500px}.stage iframe{height:700px}}@media(max-width:600px){.shell{padding:20px 14px}.intro{margin:30px 0 22px;display:block}.privacy{display:inline-block;margin-top:20px}.preview-head{display:block}.actions{margin-top:14px}.actions button{flex:1}.stage{padding:10px}.stage iframe{height:660px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><div class="brand"><span class="mark" aria-hidden="true">≡</span> Invoice Viewer</div><span class="top-note">UBL 2.1 · PINT AE / Peppol style</span></header>
+    <section class="intro"><div><div class="eyebrow">XML → readable invoice</div><h1>Invoices, ready to read.</h1><p>Choose UBL invoice XML files to turn them into a clean, printable page. Review the result, download the HTML, or save it as a PDF from your browser.</p></div><span class="privacy">Files stay in your browser</span></section>
+    <div class="workspace">
+      <aside class="panel" aria-label="Invoice files">
+        <h2>Add invoices</h2><p class="section-note">Select one or more XML invoices. Each file is rendered separately.</p>
+        <label class="drop" id="drop"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 22V6m0 0-6 6m6-6 6 6M5 21v4a3 3 0 003 3h16a3 3 0 003-3v-4" stroke="#087d83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Choose XML files or drop them here</strong><span>UBL 2.1 Invoice · .xml</span><input id="file-input" type="file" accept=".xml,application/xml,text/xml" multiple></label>
+        <button class="sample" id="sample" type="button">Try the sample invoice</button>
+        <div class="file-label"><span>Invoices</span><span class="count" id="count">0</span></div><ul class="files" id="files"><li class="empty">No invoices added yet.</li></ul>
+      </aside>
+      <section class="preview" aria-label="Invoice preview"><div class="preview-head"><div><h2>Preview</h2><p id="preview-name">Your rendered invoice will appear here</p></div><div class="actions"><button id="download" type="button" disabled>Download HTML</button><button id="print" class="primary" type="button" disabled>Print / Save PDF</button></div></div><div class="stage" id="stage"><div class="placeholder"><div class="icon" aria-hidden="true">▤</div><strong>Nothing to preview yet</strong><p>Add an XML invoice or open the sample to get started.</p></div></div></section>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
