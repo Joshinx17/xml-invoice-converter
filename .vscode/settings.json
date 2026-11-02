@@ -1,0 +1,8 @@
+{
+  "xml.fileAssociations": [
+    {
+      "pattern": "invoices/*.xml",
+      "systemId": "ubl/xsd/maindoc/UBL-Invoice-2.1.xsd"
+    }
+  ]
+}
